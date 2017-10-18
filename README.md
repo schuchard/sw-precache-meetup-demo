@@ -1,6 +1,35 @@
 # SvcWorkerDemo
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.2.1.
+## Setup
+
+`npm install -g live-server`
+
+`npm install`
+
+`npm run launch`
+
+### If you're starting from a blank Angular ClI project:
+
+1. install dependencies
+    1. `npm install --save-dev sw-precache`
+2. add service worker registration to `main.ts` file
+3. add `service-worker.js` file to `/src` directory
+4. add `service-worker.js` file path to angular-cli assets array
+5. add `sw-precache-config.js` file to root dir
+    1. `navigateFallback` – if the user requests a url not recognized fallback to index.html
+    2. `stripPrefix` – tells precache that dist is the root and to not add it to file paths
+    3. `root` – tells precache where to create the service worker file
+    4. `staticFileGlobs` – tells precache what files to cache
+6. `ng build --prod`
+7. add scripts to `package json`
+    1. build sw - `"sw": "sw-precache --root=dist --config=sw-precache-config.js"`
+    2. demo server - `"static-serve": "cd dist && live-server --port=4200 --host=localhost --entry-file=/index.html"`
+8. `npm run sw`
+9. `npm run static-serve`
+
+----
+
+This project was generated with [Angular CLI](https://github.com/angular/angular-cli)
 
 ## Development server
 
